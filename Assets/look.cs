@@ -22,11 +22,11 @@ public class look : MonoBehaviour
     void Update()
     {
         //check for input device from settings
-        stickRotate();
     }
 
     void OnLook(InputValue value){
         lookInput = value.Get<Vector2>();
+        stickRotate();
     }
 
     private void stickRotate(){
