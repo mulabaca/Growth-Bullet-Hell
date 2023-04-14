@@ -25,8 +25,12 @@ public class look : MonoBehaviour
     }
 
     void OnLook(InputValue value){
+        
         lookInput = value.Get<Vector2>();
-        stickRotate();
+        if(Mathf.Abs(lookInput.x) > 0.3f || Mathf.Abs(lookInput.y) > 0.3f){
+            stickRotate();
+        }
+        
     }
 
     private void stickRotate(){

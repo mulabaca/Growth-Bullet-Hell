@@ -10,11 +10,14 @@ public class GunScript : MonoBehaviour
 
     public float bulletSpeed = 10f;
 
+    public float momentumStrength = 1f;
+
     private float nextFireTime = 0f;
 
     private BulletScript bulletScript;
+    
 
-    public Rigidbody2D rbPlayer;
+    private Rigidbody2D rbPlayer;
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +40,7 @@ public class GunScript : MonoBehaviour
     public void fireBullet()
     {
         // Check if the gun is equipped and enough time has passed since last firing a bullet
-        if (!isEquipped() && Time.time < nextFireTime)
+        if (!isEquipped() || Time.time < nextFireTime)
         {
             return;
         }
@@ -50,7 +53,7 @@ public class GunScript : MonoBehaviour
         bulletScript = bullet.GetComponent<BulletScript>();
 
         bulletScript.SetBulletSpeed(bulletSpeed);
-        bulletScript.setMomentum(rbPlayer.velocity);
+        bulletScript.setMomentum(rbPlayer.velocity * momentumStrength);
         bulletScript.shoot();
 
         bullet.SetActive(true);

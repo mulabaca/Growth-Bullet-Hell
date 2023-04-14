@@ -11,9 +11,14 @@ public class BulletScript : MonoBehaviour
 
     public Vector3 direction;
 
+    private CircleCollider2D hitbox;
+
+    private bool collided = false;
+
     void Start()
     {
         rbBullet = GetComponent<Rigidbody2D>();
+        hitbox = GetComponent<CircleCollider2D>();
     }
 
     public void SetBulletSpeed(float speed)
@@ -22,9 +27,9 @@ public class BulletScript : MonoBehaviour
         direction = (transform.right * bulletSpeed);
     }
 
-    public void setMomentum(Vector3 m){
-        float projection = Vector3.Dot(m, direction.normalized);
-        newDirection = (direction.normalized * projection);
+    public void setMomentum(Vector3 momentum){
+        float projection = Vector3.Dot(momentum, direction.normalized);
+        newDirection = (direction.normalized * (projection/2));
         direction = (transform.right * bulletSpeed) + newDirection;
     }
 
@@ -34,6 +39,13 @@ public class BulletScript : MonoBehaviour
 
     void FixedUpdate()
     {   
-        rbBullet.velocity =  direction;
+        if(!collided){
+            rbBullet.velocity =  direction;
+        }
     } 
+
+    void OnCollisionEnter2D(Collision2D collision){
+        collided = true;
+    }
+    
 }
