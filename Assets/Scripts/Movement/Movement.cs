@@ -12,6 +12,10 @@ public class Movement : MonoBehaviour
     public Vector2 velocity;
     public float speed = 1f;
 
+    public float recoil;
+
+    public Vector2 recoilVector;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,12 +26,27 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        rb.velocity = (playerinput * speed);
+        if(recoil > 0){
+            recoilVector = new Vector2((transform.forward * -recoil).x, (transform.forward * -recoil).y);
+            rb.velocity = (playerinput * speed) + recoilVector;
+            reduceRecoil();
+        }else{
+            rb.velocity = (playerinput * speed);
+        }
         velocity = rb.velocity;
     }   
 
     void OnMove(InputValue value){
         playerinput = value.Get<Vector2>();
+    }
+
+    public void setRecoil(float recoilGiven){
+        recoil = recoilGiven;
+        Debug.Log("recoil set");
+    }
+
+    private void reduceRecoil(){
+        recoil -= 0.001f;
     }
     
 }
