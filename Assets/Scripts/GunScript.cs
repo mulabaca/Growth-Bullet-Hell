@@ -8,21 +8,32 @@ public class GunScript : MonoBehaviour
     public GameObject bulletPrefab;
     public float fireRate = 1f; //cannot be 0
 
-    public float bulletSpeed = 10f;
+    public float bulletSpeed = 10f; 
 
     public float momentumStrength = 1f;
 
+    public float bulletMass = 0.2f;
+
+    public float recoil;
+
+    public bool playerBullet;
+
     private float nextFireTime = 0f;
+
 
     private BulletScript bulletScript;
     
 
-    private Rigidbody2D rbPlayer;
+    public Rigidbody2D rbPlayer;
+
+    public Movement playerMovementScript;
 
     // Start is called before the first frame update
     void Start()
     {
         rbPlayer = GetComponentInParent<Rigidbody2D>();   
+        playerBullet = transform.parent.CompareTag("Player");
+        playerMovementScript = GetComponentInParent<Movement>();  
     }
 
     // Update is called once per frame
@@ -52,11 +63,15 @@ public class GunScript : MonoBehaviour
         
         bulletScript = bullet.GetComponent<BulletScript>();
 
-        bulletScript.SetBulletSpeed(bulletSpeed);
-        bulletScript.setMomentum(rbPlayer.velocity * momentumStrength);
-        bulletScript.shoot();
+        bulletScript.SetBulletSpeed(bulletSpeed);                       //bullet speed
+        bulletScript.setMomentum(rbPlayer.velocity * momentumStrength); //bullet momentum
+        bulletScript.setPlayerBullet(playerBullet);                     //bullet owner
 
         bullet.SetActive(true);
+        bulletScript.setMass(bulletMass);                               //bullet mass
+
+        playerMovementScript.setRecoil(recoil);                         //recoil
+        Debug.Log("recoil: " + recoil);
 
         // Update the next fire time
         nextFireTime = Time.time + (1f/fireRate);

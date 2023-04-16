@@ -23,6 +23,8 @@ public class BulletScript : MonoBehaviour
 
     private float alphaValue = 1f;
 
+    private bool playerBullet;
+
     void Start()
     {
         rbBullet = GetComponent<Rigidbody2D>();
@@ -42,9 +44,6 @@ public class BulletScript : MonoBehaviour
         direction = (transform.right * bulletSpeed) + newDirection;
     }
 
-    public void shoot(){
-        
-    }
 
     void FixedUpdate()
     {   
@@ -60,19 +59,20 @@ public class BulletScript : MonoBehaviour
             rbBullet.velocity = rbBullet.velocity * 0.95f;
         }
     } 
-
+    
+    //
     void OnCollisionEnter2D(Collision2D collision){
         if(!collided){
             collided = true;
             lifetime = Time.time + lifetime;
         }
-        if(!collision.gameObject.CompareTag("Bullet")){
+        if(!collision.gameObject.CompareTag("Bullet")){ 
             dying = true;
         }
         
     }
 
-    void decreaseOpacity(){
+    private void decreaseOpacity(){
         alphaValue -= 0.1f;
         // get the current color of the sprite
         Color currentColor = spriteRenderer.color;
@@ -87,5 +87,12 @@ public class BulletScript : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
+
+    public void setMass(float mass){
+        rbBullet.mass = mass;
+    }
+
+    public void setPlayerBullet(bool isPlayerBullet){
+        playerBullet = isPlayerBullet;
+    }
 }
