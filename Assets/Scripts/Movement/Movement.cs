@@ -43,7 +43,7 @@ public class Movement : MonoBehaviour
     public void setRecoil(float recoilGiven){
         recoil = recoilGiven;
         recoilVector = new Vector2((Mathf.Cos(Mathf.Deg2Rad * transform.eulerAngles.z) * -recoil), Mathf.Sin(Mathf.Deg2Rad * transform.eulerAngles.z) * -recoil);
-        Debug.Log("recoil set");
+        //Debug.Log("recoil set");
     }
 
     private void reduceRecoil(){
