@@ -10,7 +10,7 @@ public class Movement : MonoBehaviour
     private Rigidbody2D rb;
 
     public Vector2 velocity;
-    public float speed = 1f;
+    public float speed = 10f;
 
     public float recoil;
 
@@ -26,8 +26,8 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(recoil > 0){
-            recoilVector = new Vector2((transform.forward * -recoil).x, (transform.forward * -recoil).y);
+        if(recoil > speed/10){ //if recoil bigger than 10% of player speed
+            //apply recoil to player velocity
             rb.velocity = (playerinput * speed) + recoilVector;
             reduceRecoil();
         }else{
@@ -42,11 +42,12 @@ public class Movement : MonoBehaviour
 
     public void setRecoil(float recoilGiven){
         recoil = recoilGiven;
+        recoilVector = new Vector2((Mathf.Cos(Mathf.Deg2Rad * transform.eulerAngles.z) * -recoil), Mathf.Sin(Mathf.Deg2Rad * transform.eulerAngles.z) * -recoil);
         Debug.Log("recoil set");
     }
 
     private void reduceRecoil(){
-        recoil -= 0.001f;
+        recoil *= 0.5f;
     }
     
 }

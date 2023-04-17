@@ -102,5 +102,7 @@ MonoBehaviour:
   bulletSpeed: 15
   momentumStrength: 2
   bulletMass: 0.2
-  recoil: 100
+  recoil: 10
   playerBullet: 0
+  rbPlayer: {fileID: 0}
+  playerMovementScript: {fileID: 0}
