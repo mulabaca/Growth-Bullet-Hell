@@ -51,12 +51,13 @@ public class look : MonoBehaviour
     private void mouseRotate(){
 
         //get pointer position
-        Vector3 mousePosition = Mouse.current.position.ReadValue();
+        Vector2 mousePosition = Mouse.current.position.ReadValue();
         mousePosition = realCamera.ScreenToWorldPoint(mousePosition);
-        mousePosition.z = 0f;
 
         // Get the direction to the player
-        Vector3 direction = mousePosition - transform.position;
+        mousePosition = mousePosition - (new Vector2(transform.position.x, transform.position.y));
+
+        Vector3 direction = new Vector3(mousePosition.x, mousePosition.y, 0f);
 
         transform.right = direction;
     }

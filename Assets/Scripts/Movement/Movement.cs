@@ -36,7 +36,7 @@ public class Movement : MonoBehaviour
         velocity = rb.velocity;
     }   
 
-    void OnMove(InputValue value){
+    public void OnMove(InputValue value){
         playerinput = value.Get<Vector2>();
     }
 
