@@ -717,6 +717,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7818007876362941630, guid: 110a1feef056f934d94b4e71e4f0cec9, type: 3}
+      propertyPath: m_NotificationBehavior
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8713723972781106146, guid: 110a1feef056f934d94b4e71e4f0cec9, type: 3}
       propertyPath: m_Name
       value: Player
@@ -764,6 +768,14 @@ PrefabInstance:
     - target: {fileID: 8713723972781106175, guid: 110a1feef056f934d94b4e71e4f0cec9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8906731213045905435, guid: 110a1feef056f934d94b4e71e4f0cec9, type: 3}
+      propertyPath: fire.m_Id
+      value: d3a86e01-7478-4613-81a8-552453c906c3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8906731213045905435, guid: 110a1feef056f934d94b4e71e4f0cec9, type: 3}
+      propertyPath: fire.m_Name
+      value: Fire
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 110a1feef056f934d94b4e71e4f0cec9, type: 3}

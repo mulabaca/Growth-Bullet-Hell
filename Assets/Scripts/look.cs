@@ -32,8 +32,9 @@ public class look : MonoBehaviour
         if (usingMouse){
             mouseRotate();
         }else {
-            
-            stickRotate();
+            if(Mathf.Abs(lookInput.x) > 0.3f || Mathf.Abs(lookInput.y) > 0.3f){
+                stickRotate();
+            }
             
         }
     }
@@ -52,7 +53,7 @@ public class look : MonoBehaviour
 
         //get pointer position
         Vector2 mousePosition = Mouse.current.position.ReadValue();
-        mousePosition = realCamera.ScreenToWorldPoint(mousePosition);
+        mousePosition = realCamera.ScreenToWorldPoint(new Vector3(((int)mousePosition.x), ((int)mousePosition.y), 0f));
 
         // Get the direction to the player
         mousePosition = mousePosition - (new Vector2(transform.position.x, transform.position.y));

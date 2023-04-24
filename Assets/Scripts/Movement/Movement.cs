@@ -26,7 +26,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(recoil > speed/10){ //if recoil bigger than 10% of player speed
+        if(recoil > speed/20){ //if recoil bigger than 5% of player speed
             //apply recoil to player velocity
             rb.velocity = (playerinput * speed) + recoilVector;
             reduceRecoil();
