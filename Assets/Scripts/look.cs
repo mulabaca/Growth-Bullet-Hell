@@ -53,7 +53,7 @@ public class look : MonoBehaviour
 
         //get pointer position
         Vector2 mousePosition = Mouse.current.position.ReadValue();
-        mousePosition = realCamera.ScreenToWorldPoint(new Vector3(((int)mousePosition.x), ((int)mousePosition.y), 0f));
+        mousePosition = realCamera.ScreenToWorldPoint(new Vector3(((int)mousePosition.x), ((int)mousePosition.y), 10f));
 
         // Get the direction to the player
         mousePosition = mousePosition - (new Vector2(transform.position.x, transform.position.y));

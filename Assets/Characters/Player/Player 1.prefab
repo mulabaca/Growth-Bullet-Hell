@@ -280,7 +280,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateSpeed: 10
   usingMouse: 1
-  worldCamera: {fileID: 5528046523094349224, guid: 8755e9356993d8a449bba9253e3e0b76, type: 3}
+  worldCamera: {fileID: 0}
 --- !u!114 &8906731213045905435
 MonoBehaviour:
   m_ObjectHideFlags: 0
