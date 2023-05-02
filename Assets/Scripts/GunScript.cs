@@ -33,7 +33,9 @@ public class GunScript : MonoBehaviour
     {
         rbPlayer = GetComponentInParent<Rigidbody2D>();   
         playerBullet = transform.parent.CompareTag("Player");
-        playerMovementScript = GetComponentInParent<Movement>();  
+        if(transform.parent.CompareTag("Player")){
+            playerMovementScript = GetComponentInParent<Movement>();  
+        }
     }
 
     // Update is called once per frame
@@ -50,11 +52,12 @@ public class GunScript : MonoBehaviour
 
     public void fireBullet()
     {
+        Debug.Log("Fire time: " + nextFireTime);
         // Check if the gun is equipped and enough time has passed since last firing a bullet
         if (!isEquipped() || Time.time < nextFireTime)
         {
-            return;
-        }
+            return; //don't shoot
+        } //else shoot
 
         // Create a new bullet from the bullet prefab
         GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
@@ -70,10 +73,14 @@ public class GunScript : MonoBehaviour
 
         //bulletScript.setMass(bulletMass);                               //bullet mass
 
-        playerMovementScript.setRecoil(recoil);                         //recoil
-        Debug.Log("recoil: " + recoil);
+        if (playerMovementScript != null){
+            playerMovementScript.setRecoil(recoil);                         //recoil
+            Debug.Log("recoil: " + recoil);
+        }else{
+            //enemy recoil  
+        } 
 
-        // Update the next fire time
+        // Update the next time it can fire
         nextFireTime = Time.time + (1f/fireRate);
     }
 }

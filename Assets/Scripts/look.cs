@@ -26,7 +26,7 @@ public class look : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //check for input device from settings
         if (usingMouse){
