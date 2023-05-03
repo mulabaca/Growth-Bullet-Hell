@@ -27,6 +27,8 @@ public class BulletScript : MonoBehaviour
 
     private bool playerBullet;
 
+    private bool dealDamage = true;
+
 
     void Start()
     {
@@ -54,8 +56,9 @@ public class BulletScript : MonoBehaviour
         if(!collided){
             rbBullet.velocity =  direction;
         }else if(dying && Time.time > lifetime){
+            dealDamage = false;
             rbBullet.velocity =  Vector3.zero; //stop the bullet
-            hitbox.isTrigger = true; //disable collisions
+            hitbox.isTrigger = false; //disable collisions
             spriteRenderer.sortingOrder = 0; //make them part of the background
             decreaseOpacity();
             
@@ -70,7 +73,7 @@ public class BulletScript : MonoBehaviour
             collided = true;
             lifetime = Time.time + lifetime;
         }
-        if(!collision.gameObject.CompareTag("Bullet")){ 
+        if(!collision.collider.CompareTag("Bullet")){ 
             dying = true;
         }
         
@@ -100,8 +103,12 @@ public class BulletScript : MonoBehaviour
         playerBullet = isPlayerBullet;
     }
 
-    public bool isDying(){
-        return dying;
+    public bool isPassive(){
+        return !dealDamage;
+    }
+
+    public void dealtDamage(){
+        dealDamage = false;    
     }
 
     public bool isFromPlayer(){

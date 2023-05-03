@@ -36,6 +36,8 @@ public class GunScript : MonoBehaviour
         if(transform.parent.CompareTag("Player")){
             Debug.Log("Player shooting");
             playerMovementScript = GetComponentInParent<Movement>();  
+        }else{
+            Debug.Log("Enemy shooting: " + playerBullet);
         }
     }
 

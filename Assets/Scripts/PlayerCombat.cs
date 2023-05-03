@@ -11,6 +11,7 @@ public class PlayerCombat : MonoBehaviour
     public GunScript gunScript;
 
     public InputAction fire;
+
     void Start()
     {
         gunScript = GetComponentInChildren<GunScript>();
@@ -29,20 +30,16 @@ public class PlayerCombat : MonoBehaviour
         //Debug.Log("Player collision with " + collision.collider.tag);
         if(collision.collider.CompareTag("Bullet")){
             BulletScript bulletScript = collision.collider.GetComponent<BulletScript>();
-            if(!bulletScript.isFromPlayer()){
+            if(!bulletScript.isPassive() && !bulletScript.isFromPlayer()){
                 Debug.Log("Player took damage!");
                 takeDamage(bulletScript);
-            }else{
-                Debug.Log("No damage taken again!");
-                Debug.Log("Has Collided: " + bulletScript.isDying());
             }
-        }else{
-            Debug.Log("No damage taken!");
         }
     }
 
     private void takeDamage(BulletScript bulletScript){
         addSize(bulletScript.bulletDamage);
+        bulletScript.dealtDamage();
     }
 
     private void addSize(float size){
