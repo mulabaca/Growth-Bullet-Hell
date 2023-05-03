@@ -34,6 +34,7 @@ public class GunScript : MonoBehaviour
         rbPlayer = GetComponentInParent<Rigidbody2D>();   
         playerBullet = transform.parent.CompareTag("Player");
         if(transform.parent.CompareTag("Player")){
+            Debug.Log("Player shooting");
             playerMovementScript = GetComponentInParent<Movement>();  
         }
     }
@@ -52,7 +53,7 @@ public class GunScript : MonoBehaviour
 
     public void fireBullet()
     {
-        Debug.Log("Fire time: " + nextFireTime);
+        //Debug.Log("Fire time: " + nextFireTime);
         // Check if the gun is equipped and enough time has passed since last firing a bullet
         if (!isEquipped() || Time.time < nextFireTime)
         {

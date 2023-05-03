@@ -7,6 +7,8 @@ public class BulletScript : MonoBehaviour
     private Rigidbody2D rbBullet;
     public float bulletSpeed;
 
+    public float bulletDamage;
+
     public Vector3 newDirection;
 
     public Vector3 direction;
@@ -15,7 +17,7 @@ public class BulletScript : MonoBehaviour
 
     public float lifetime = 1;
 
-    private bool collided = false;
+    private bool collided {get; set;}
 
     private bool dying = false;
 
@@ -25,8 +27,10 @@ public class BulletScript : MonoBehaviour
 
     private bool playerBullet;
 
+
     void Start()
     {
+        collided = false;
         rbBullet = GetComponent<Rigidbody2D>();
         hitbox = GetComponent<CircleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -94,5 +98,13 @@ public class BulletScript : MonoBehaviour
 
     public void setPlayerBullet(bool isPlayerBullet){
         playerBullet = isPlayerBullet;
+    }
+
+    public bool isDying(){
+        return dying;
+    }
+
+    public bool isFromPlayer(){
+        return playerBullet;
     }
 }
