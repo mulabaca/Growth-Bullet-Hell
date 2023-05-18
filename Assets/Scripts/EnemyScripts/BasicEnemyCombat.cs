@@ -7,6 +7,8 @@ public class BasicEnemyCombat : MonoBehaviour
 
     public float health = 1f;
     // Start is called before the first frame update
+
+    public float contactDamage = 0f;
     void Start()
     {
         

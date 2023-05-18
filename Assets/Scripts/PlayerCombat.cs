@@ -8,6 +8,10 @@ public class PlayerCombat : MonoBehaviour
     // Start is called before the first frame update
     private bool pressingFire {get; set;}
 
+    public float damageCooldown = 1f;
+
+    private float cooldown = 0f;
+
     public GunScript gunScript;
 
     public InputAction fire;
@@ -32,14 +36,21 @@ public class PlayerCombat : MonoBehaviour
             BulletScript bulletScript = collision.collider.GetComponent<BulletScript>();
             if(!bulletScript.isPassive() && !bulletScript.isFromPlayer()){
                 Debug.Log("Player took damage!");
-                takeDamage(bulletScript);
+                takeDamage(bulletScript.bulletDamage);
+                bulletScript.dealtDamage();
             }
+        }
+        else if(collision.collider.CompareTag("Enemy")){
+            takeDamage(collision.collider.GetComponent<BasicEnemyCombat>().contactDamage);
         }
     }
 
-    private void takeDamage(BulletScript bulletScript){
-        addSize(bulletScript.bulletDamage);
-        bulletScript.dealtDamage();
+    private void takeDamage(float damage){
+        if (cooldown <= Time.time){
+            addSize(damage);
+            cooldown = Time.time + damageCooldown;
+        }
+        
     }
 
     private void addSize(float size){
