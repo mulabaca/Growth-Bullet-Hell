@@ -24,6 +24,7 @@ public class spawnDummy : MonoBehaviour
         {
             Debug.Log("POOF!");
             GameObject dummy = Instantiate(dummyPrefab, new Vector3(8,0,0), transform.rotation);
+            //dummy.GetComponent<AIDestination>();
         }
     }
 }
