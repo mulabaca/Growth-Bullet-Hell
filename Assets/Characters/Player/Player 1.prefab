@@ -16,7 +16,8 @@ GameObject:
   - component: {fileID: 7963876782165368435}
   - component: {fileID: 8427764865090082799}
   - component: {fileID: 8906731213045905435}
-  m_Layer: 0
+  - component: {fileID: 6499635405446711999}
+  m_Layer: 6
   m_Name: Player 1
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -293,6 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b842e078b060741b5e0f01f214fe4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageCooldown: 1
   gunScript: {fileID: 0}
   fire:
     m_Name: Fire
@@ -303,6 +305,18 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+--- !u!114 &6499635405446711999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8713723972781106146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34b8fc1d5bf2921479a80e69edb506b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5730908210106668026
 PrefabInstance:
   m_ObjectHideFlags: 0

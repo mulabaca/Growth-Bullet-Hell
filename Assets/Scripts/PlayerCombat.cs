@@ -43,6 +43,11 @@ public class PlayerCombat : MonoBehaviour
         else if(collision.collider.CompareTag("Enemy")){
             takeDamage(collision.collider.GetComponent<BasicEnemyCombat>().contactDamage);
         }
+        //
+        else if(collision.collider.CompareTag("Pickup")){
+            GetComponent<InventoryHandler>().addPickup(collision.collider.GetComponent<PickupData>()); 
+            Destroy(collision.collider.gameObject); 
+        }
     }
 
     private void takeDamage(float damage){

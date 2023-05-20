@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: -1999142163267894831}
   - component: {fileID: 4708939427349432746}
   - component: {fileID: 4889245759411958441}
+  - component: {fileID: 2894699746443621586}
+  - component: {fileID: 2260209986260381530}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -152,7 +154,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 100
-  aimScript: {fileID: 0}
+  aimScript: {fileID: 4708939427349432746}
+--- !u!114 &2894699746443621586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564472785098350609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e68a7aa50a36cd47865c816f5503c8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  contactDamage: 0
+--- !u!114 &2260209986260381530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564472785098350609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5954f9c28795dc7429c9b1d8bb47c779, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lootPool: []
 --- !u!1001 &576880248028787132
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -9,9 +9,11 @@ public class BasicEnemyCombat : MonoBehaviour
     // Start is called before the first frame update
 
     public float contactDamage = 0f;
+
+    private LootHandler lootHandler;
     void Start()
     {
-        
+        lootHandler = GetComponent<LootHandler>();
     }
 
     // Update is called once per frame
@@ -34,6 +36,12 @@ public class BasicEnemyCombat : MonoBehaviour
     private void takeDamage(BulletScript bulletScript){
         health -= bulletScript.bulletDamage;
         if(health <= 0f){
+
+            GameObject loot = lootHandler.loot();
+            if(loot != null){
+                GameObject spawnedLoot = Instantiate(loot, transform.position, transform.rotation);
+                spawnedLoot.transform.Rotate(0f,0f,90f);
+            }
             Destroy(gameObject);
         }
         bulletScript.dealtDamage();
