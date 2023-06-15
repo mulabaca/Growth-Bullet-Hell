@@ -16,10 +16,14 @@ public class PlayerCombat : MonoBehaviour
 
     public InputAction fire;
 
+    private InventoryHandler inventoryHandler;
+
     void Start()
     {
         gunScript = GetComponentInChildren<GunScript>();
         fire = GetComponent<PlayerInput>().actions["Fire"];
+        
+        inventoryHandler = GetComponent<InventoryHandler>();
     }
 
     // Update is called once per frame
@@ -31,7 +35,7 @@ public class PlayerCombat : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D collision){
-        //Debug.Log("Player collision with " + collision.collider.tag);
+        //bullets
         if(collision.collider.CompareTag("Bullet")){
             BulletScript bulletScript = collision.collider.GetComponent<BulletScript>();
             if(!bulletScript.isPassive() && !bulletScript.isFromPlayer()){
@@ -39,14 +43,9 @@ public class PlayerCombat : MonoBehaviour
                 takeDamage(bulletScript.bulletDamage);
                 bulletScript.dealtDamage();
             }
-        }
+        }//enemies
         else if(collision.collider.CompareTag("Enemy")){
             takeDamage(collision.collider.GetComponent<BasicEnemyCombat>().contactDamage);
-        }
-        //
-        else if(collision.collider.CompareTag("Pickup")){
-            GetComponent<InventoryHandler>().addPickup(collision.collider.GetComponent<PickupData>()); 
-            Destroy(collision.collider.gameObject); 
         }
     }
 

@@ -16,8 +16,13 @@ public class UIScript : MonoBehaviour
     {
         
     }
+    //updates ui counter corresponding pickup
+    public void updateCounter(int count, string type){
 
-    public void updateCoinCounter(int coinCount){
-        coinCounter.SetText(coinCount.ToString());
+        if(type == "coin"){
+            coinCounter.SetText(count.ToString());
+        }
     }
+
+
 }
