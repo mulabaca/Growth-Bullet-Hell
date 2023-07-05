@@ -56,8 +56,9 @@ public class PlayerCombat : MonoBehaviour
         }
         
     }
-
-    private void addSize(float size){
+    //adds size to player
+    //size : float  is the change it will get.
+    public void addSize(float size){
         transform.localScale = new Vector3(transform.localScale.x + size, transform.localScale.y + size, 1f);
     }
 }
