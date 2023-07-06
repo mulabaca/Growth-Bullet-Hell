@@ -11,6 +11,7 @@ public class PlayerCombat : MonoBehaviour
     public float damageCooldown = 1f;
 
     private float cooldown = 0f;
+    private float sizeDamageMultiplyer = 1.2f; //multipliyer for player size after taking damage
 
     public GunScript gunScript;
 
@@ -40,18 +41,18 @@ public class PlayerCombat : MonoBehaviour
             BulletScript bulletScript = collision.collider.GetComponent<BulletScript>();
             if(!bulletScript.isPassive() && !bulletScript.isFromPlayer()){
                 Debug.Log("Player took damage!");
-                takeDamage(bulletScript.bulletDamage);
+                takeDamage();
                 bulletScript.dealtDamage();
             }
         }//enemies
         else if(collision.collider.CompareTag("Enemy")){
-            takeDamage(collision.collider.GetComponent<BasicEnemyCombat>().contactDamage);
+            takeDamage();
         }
     }
 
-    private void takeDamage(float damage){
+    private void takeDamage(){
         if (cooldown <= Time.time){
-            addSize(damage);
+            multiplySize(sizeDamageMultiplyer);
             cooldown = Time.time + damageCooldown;
         }
         
@@ -60,5 +61,10 @@ public class PlayerCombat : MonoBehaviour
     //size : float  is the change it will get.
     public void addSize(float size){
         transform.localScale = new Vector3(transform.localScale.x + size, transform.localScale.y + size, 1f);
+    }
+
+    //scale size of player
+    public void multiplySize(float multipliyer){
+        transform.localScale = new Vector3(transform.localScale.x * multipliyer, transform.localScale.y * multipliyer, 1f);
     }
 }

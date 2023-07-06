@@ -35,15 +35,18 @@ public class PickupController : MonoBehaviour
             //if not in cooldown
             InventoryHandler inventoryHandler = col.gameObject.GetComponent<InventoryHandler>();
             
-            if(inventoryHandler.addPickup(pickupData) && !pickupData.respawnable){
-                Destroy(gameObject);
-            }
-            else{
-                buyCooldown = ((int)Time.time) + 2;
-            }
+            if(inventoryHandler.addPickup(pickupData)){ //if cost paid
 
-            if(pickupEffect != null){
-                pickupEffect.applyEffects(col.gameObject);
+                if(pickupEffect != null){ //apply effect if any
+                    pickupEffect.applyEffects(col.gameObject);
+                }
+
+                if(!pickupData.respawnable){ //destroy
+                    Destroy(gameObject);
+                }
+                else{ //respawn
+                    buyCooldown = ((int)Time.time) + 2;
+                }
             }
         }
     }

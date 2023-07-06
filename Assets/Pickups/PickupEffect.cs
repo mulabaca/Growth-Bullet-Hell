@@ -27,7 +27,7 @@ public class PickupEffect : MonoBehaviour
         //size
         PlayerCombat playerCombat = player.GetComponent<PlayerCombat>();
         if(sizeDownHalf){
-            playerCombat.addSize(player.transform.localScale.x / -2f);
+            playerCombat.multiplySize(0.6f);
         }
 
     }

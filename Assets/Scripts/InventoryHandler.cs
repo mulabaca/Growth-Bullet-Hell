@@ -17,6 +17,8 @@ public class InventoryHandler : MonoBehaviour
         inventory["sizeDown"] = 0;
     }
 
+    //add pickup to inventory if able to pay cost
+    //returns true if requrements are met
     public bool addPickup(PickupData data){
         if(payCost(data.cost)){
             inventory[data.type] += data.value;
