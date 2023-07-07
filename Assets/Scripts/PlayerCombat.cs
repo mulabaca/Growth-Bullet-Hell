@@ -19,12 +19,16 @@ public class PlayerCombat : MonoBehaviour
 
     private InventoryHandler inventoryHandler;
 
+    private Camera worldCamera;
+
     void Start()
     {
         gunScript = GetComponentInChildren<GunScript>();
         fire = GetComponent<PlayerInput>().actions["Fire"];
         
         inventoryHandler = GetComponent<InventoryHandler>();
+
+        worldCamera = GetComponent<look>().worldCamera.GetComponent<Camera>();
     }
 
     // Update is called once per frame
@@ -57,14 +61,11 @@ public class PlayerCombat : MonoBehaviour
         }
         
     }
-    //adds size to player
-    //size : float  is the change it will get.
-    public void addSize(float size){
-        transform.localScale = new Vector3(transform.localScale.x + size, transform.localScale.y + size, 1f);
-    }
+   
 
     //scale size of player
     public void multiplySize(float multipliyer){
         transform.localScale = new Vector3(transform.localScale.x * multipliyer, transform.localScale.y * multipliyer, 1f);
+        worldCamera.orthographicSize *= multipliyer;
     }
 }
