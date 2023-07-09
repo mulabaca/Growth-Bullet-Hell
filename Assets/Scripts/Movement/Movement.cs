@@ -28,10 +28,10 @@ public class Movement : MonoBehaviour
     {
         if(recoil > speed/20){ //if recoil bigger than 5% of player speed
             //apply recoil to player velocity
-            rb.velocity = (playerinput * speed) + recoilVector;
+            rb.velocity = (playerinput * speed * transform.localScale.y) + recoilVector;
             reduceRecoil();
         }else{
-            rb.velocity = (playerinput * speed);
+            rb.velocity = (playerinput * speed * transform.localScale.y);
         }
         velocity = rb.velocity;
     }   

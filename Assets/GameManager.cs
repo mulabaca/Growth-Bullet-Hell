@@ -35,12 +35,12 @@ public class GameManager : MonoBehaviour
         if (isPaused)
         {
             Time.timeScale = 0f;
-            //pauseMenu.SetActive(true);
+            pauseMenu.SetActive(true);
         }
         else
         {
             Time.timeScale = 1f;
-            //pauseMenu.SetActive(false);
+            pauseMenu.SetActive(false);
         }
     }
 
