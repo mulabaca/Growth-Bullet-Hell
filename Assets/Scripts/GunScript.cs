@@ -6,6 +6,7 @@ public class GunScript : MonoBehaviour
 {
 
     public GameObject bulletPrefab;
+
     public float fireRate = 1f; //cannot be 0
 
     public float bulletSpeed = 10f; 
@@ -17,6 +18,10 @@ public class GunScript : MonoBehaviour
     public float recoil;
 
     public bool playerBullet;
+
+    private bool isEquipped = false;
+
+    private BoxCollider2D gunHitbox;
 
     private float nextFireTime = 0f;
 
@@ -32,14 +37,21 @@ public class GunScript : MonoBehaviour
     void Start()
     {
         rbPlayer = GetComponentInParent<Rigidbody2D>();   
-        playerBullet = transform.parent.CompareTag("Player");
-        if(transform.parent.CompareTag("Player")){
-            Debug.Log("Player shooting");
-            playerMovementScript = GetComponentInParent<Movement>();  
-        }else{
-            Debug.Log("Enemy shooting: " + playerBullet);
+        gunHitbox = GetComponent<BoxCollider2D>();
+        if(transform.parent != null){
+            playerBullet = transform.parent.CompareTag("Player");
+            if(playerBullet){
+                Debug.Log("Player shooting");
+                playerMovementScript = GetComponentInParent<Movement>();  
+                isEquipped = true;
+                gunHitbox.enabled = false;
+            }
+            else if(transform.parent.CompareTag("Enemy")){
+                isEquipped = true;
+            }
         }
     }
+
 
     // Update is called once per frame
     void Update()
@@ -47,18 +59,11 @@ public class GunScript : MonoBehaviour
 
     }
 
-    //checks if the gun is equiped
-    public bool isEquipped()
-    {
-        return transform.parent != null;
-    }
-
     public void fireBullet()
     {
         //Debug.Log("Fire time: " + nextFireTime);
         // Check if the gun is equipped and enough time has passed since last firing a bullet
-        if (!isEquipped() || Time.time < nextFireTime)
-        {
+        if (!isEquipped || Time.time < nextFireTime){
             return; //don't shoot
         } //else shoot
 
@@ -69,9 +74,9 @@ public class GunScript : MonoBehaviour
         
         bulletScript = bullet.GetComponent<BulletScript>();
 
+        bulletScript.setPlayerBullet(playerBullet);                     //bullet owner
         bulletScript.SetBulletSpeed(bulletSpeed);                       //bullet speed
         bulletScript.setMomentum(rbPlayer.velocity * momentumStrength); //bullet momentum
-        bulletScript.setPlayerBullet(playerBullet);                     //bullet owner
         bulletScript.transform.localScale *= transform.lossyScale.x;
         Debug.Log("recoil: " + recoil);
 
@@ -86,5 +91,39 @@ public class GunScript : MonoBehaviour
 
         // Update the next time it can fire
         nextFireTime = Time.time + (1f/fireRate);
+    }
+
+    void OnTriggerEnter2D(Collider2D collider){
+        if (collider.CompareTag("Player")){
+            collider.GetComponent<PlayerCombat>().weaponOnReach = gameObject;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collider){
+        if (collider.CompareTag("Player")){
+            collider.GetComponent<PlayerCombat>().weaponOnReach = null;
+        }
+    }
+
+    public void equip(Transform player, Vector3 position, Quaternion rotation){
+        //Debug.LogWarning("Equipping: " + gameObject.name);
+        transform.SetParent(player);
+        playerMovementScript = GetComponentInParent<Movement>(); 
+        isEquipped = true;
+        gunHitbox.enabled = false;
+        playerBullet = true;
+        transform.localPosition = position;
+        transform.localRotation = rotation;
+        transform.localScale = new Vector3(1f,1f,1f);
+        
+    }
+
+    public void unequip(){
+        //Debug.LogWarning("Unequipping: " + gameObject.name);
+        transform.SetParent(transform.parent.transform.parent);
+        playerMovementScript = null; 
+        isEquipped = false;
+        gunHitbox.enabled = true;
+        playerBullet = false;
     }
 }

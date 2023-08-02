@@ -21,6 +21,9 @@ public class PlayerCombat : MonoBehaviour
 
     private Camera worldCamera;
 
+    public GameObject weaponOnReach;
+    
+
     void Start()
     {
         gunScript = GetComponentInChildren<GunScript>();
@@ -67,5 +70,23 @@ public class PlayerCombat : MonoBehaviour
     public void multiplySize(float multipliyer){
         transform.localScale = new Vector3(transform.localScale.x * multipliyer, transform.localScale.y * multipliyer, 1f);
         worldCamera.orthographicSize *= multipliyer;
+    }
+
+    void OnEquip(){
+        //Debug.LogWarning("Equip pressed!");
+    
+        if(weaponOnReach != null){
+            Transform currentWeapon = transform.GetChild(0); // change this if I add weapon switching
+
+            Vector3 previousPos = currentWeapon.localPosition;
+            Quaternion previousRot = currentWeapon.localRotation;
+            gunScript.unequip();
+
+            gunScript = weaponOnReach.GetComponent<GunScript>();
+            gunScript.equip(transform, previousPos, previousRot);
+            
+
+        }
+        
     }
 }

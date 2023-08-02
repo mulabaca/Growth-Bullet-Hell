@@ -22,7 +22,7 @@ public class costViewController : MonoBehaviour
     }
 
     public void updateCost(){
-        if(pickupData.cost > 0){
+        if(pickupData != null && pickupData.cost > 0){
             text.enabled = true;
             text.SetText(pickupData.cost.ToString());
         }else text.enabled = false;
