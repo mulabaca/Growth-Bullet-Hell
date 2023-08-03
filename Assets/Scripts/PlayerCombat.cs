@@ -89,4 +89,8 @@ public class PlayerCombat : MonoBehaviour
         }
         
     }
+
+    void OnDash(){
+        cooldown = Time.time + 0.3f;
+    }
 }
