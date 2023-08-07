@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4052250246767938812, guid: de3f9ae237802a34f9d95f496adf21ea, type: 3}
       propertyPath: type
-      value: sizeDown
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: -4052250246767938812, guid: de3f9ae237802a34f9d95f496adf21ea, type: 3}
       propertyPath: respawnable
@@ -21,7 +21,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1921514183997207070, guid: de3f9ae237802a34f9d95f496adf21ea, type: 3}
       propertyPath: m_Name
-      value: Size Reduc
+      value: Size Reduc Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2352140258491640530, guid: de3f9ae237802a34f9d95f496adf21ea, type: 3}
       propertyPath: m_Sprite

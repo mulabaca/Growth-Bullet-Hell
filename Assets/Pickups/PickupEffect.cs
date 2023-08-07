@@ -9,7 +9,6 @@ public class PickupEffect : MonoBehaviour
 
     public bool sizeDownHalf;
 
-    private int buyCooldown = 0;
     void Start()
     {
         pickupData = GetComponent<PickupData>();

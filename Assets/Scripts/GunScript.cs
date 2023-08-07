@@ -33,11 +33,14 @@ public class GunScript : MonoBehaviour
 
     public Movement playerMovementScript;
 
+    private InputHintScript inputHintScript;
+
     // Start is called before the first frame update
     void Start()
     {
         rbPlayer = GetComponentInParent<Rigidbody2D>();   
         gunHitbox = GetComponent<BoxCollider2D>();
+        inputHintScript = GetComponentInChildren<InputHintScript>();
         if(transform.parent != null){
             playerBullet = transform.parent.CompareTag("Player");
             if(playerBullet){
@@ -96,17 +99,20 @@ public class GunScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider){
         if (collider.CompareTag("Player")){
             collider.GetComponent<PlayerCombat>().weaponOnReach = gameObject;
+            inputHintScript.show();
         }
     }
 
     void OnTriggerExit2D(Collider2D collider){
         if (collider.CompareTag("Player")){
             collider.GetComponent<PlayerCombat>().weaponOnReach = null;
+            inputHintScript.hide();
         }
     }
 
     public void equip(Transform player, Vector3 position, Quaternion rotation){
         //Debug.LogWarning("Equipping: " + gameObject.name);
+        inputHintScript.hide();
         transform.SetParent(player);
         playerMovementScript = GetComponentInParent<Movement>(); 
         isEquipped = true;
@@ -125,5 +131,6 @@ public class GunScript : MonoBehaviour
         isEquipped = false;
         gunHitbox.enabled = true;
         playerBullet = false;
+        inputHintScript.show();
     }
 }
