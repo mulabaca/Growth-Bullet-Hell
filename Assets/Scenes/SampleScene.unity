@@ -1626,6 +1626,10 @@ PrefabInstance:
       propertyPath: worldCamera
       value: 
       objectReference: {fileID: 1271490404}
+    - target: {fileID: 8502850243386335393, guid: 110a1feef056f934d94b4e71e4f0cec9, type: 3}
+      propertyPath: dashCoolDown
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8713723972781106146, guid: 110a1feef056f934d94b4e71e4f0cec9, type: 3}
       propertyPath: m_Name
       value: Player

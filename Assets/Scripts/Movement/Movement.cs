@@ -78,6 +78,7 @@ public class Movement : MonoBehaviour
             );
             
             movementType = MovementType.dash;
+            gameObject.layer = LayerMask.NameToLayer("Dash");
             rb.velocity = amplifiedVelocity*speed* transform.localScale.y * dashMultiplier;
             movementTimeLock = Time.time + 0.2f;
         }
@@ -95,8 +96,9 @@ public class Movement : MonoBehaviour
     }
 
     private void dash(){
-        if(Time.time > movementTimeLock){
+        if(Time.time > movementTimeLock){ //if dash over
             movementType = MovementType.move;
+            gameObject.layer = LayerMask.NameToLayer("Player");
             dashCoolDownTime = Time.time + dashCoolDown;
         }
 
