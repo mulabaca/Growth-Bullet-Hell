@@ -35,12 +35,16 @@ public class GunScript : MonoBehaviour
 
     private InputHintScript inputHintScript;
 
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
         rbPlayer = GetComponentInParent<Rigidbody2D>();   
         gunHitbox = GetComponent<BoxCollider2D>();
         inputHintScript = GetComponentInChildren<InputHintScript>();
+        audioSource = GetComponent<AudioSource>();
+
         if(transform.parent != null){
             playerBullet = transform.parent.CompareTag("Player");
             if(playerBullet){
@@ -85,6 +89,8 @@ public class GunScript : MonoBehaviour
 
         //bulletScript.setMass(bulletMass);                               //bullet mass
 
+        audioSource.Play();                                              //audio
+
         if (playerMovementScript != null){
             playerMovementScript.setRecoil(recoil);                         //recoil
             Debug.Log("recoil: " + recoil);
@@ -115,6 +121,7 @@ public class GunScript : MonoBehaviour
         inputHintScript.hide();
         transform.SetParent(player);
         playerMovementScript = GetComponentInParent<Movement>(); 
+        rbPlayer = GetComponentInParent<Rigidbody2D>();
         isEquipped = true;
         gunHitbox.enabled = false;
         playerBullet = true;

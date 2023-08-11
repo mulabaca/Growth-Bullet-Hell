@@ -756,11 +756,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -942083933912098919, guid: c176965268dd7604cb54d896ece9b2bf, type: 3}
       propertyPath: recoil
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -942083933912098919, guid: c176965268dd7604cb54d896ece9b2bf, type: 3}
       propertyPath: fireRate
-      value: 100
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: -942083933912098919, guid: c176965268dd7604cb54d896ece9b2bf, type: 3}
       propertyPath: bulletSpeed
