@@ -35,7 +35,7 @@ public class PickupController : MonoBehaviour
             //if not in cooldown
             InventoryHandler inventoryHandler = col.gameObject.GetComponent<InventoryHandler>();
             
-            if(inventoryHandler.addPickup(pickupData)){ //if cost paid
+            if(inventoryHandler.addPickup2(pickupData)){ //if cost paid
 
                 if(pickupEffect != null){ //apply effect if any
                     pickupEffect.applyEffects(col.gameObject);

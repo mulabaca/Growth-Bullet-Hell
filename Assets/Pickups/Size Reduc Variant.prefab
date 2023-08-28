@@ -16,6 +16,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: -4052250246767938812, guid: de3f9ae237802a34f9d95f496adf21ea, type: 3}
+      propertyPath: type2
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -4052250246767938812, guid: de3f9ae237802a34f9d95f496adf21ea, type: 3}
       propertyPath: respawnable
       value: 1
       objectReference: {fileID: 0}

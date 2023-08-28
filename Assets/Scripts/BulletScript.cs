@@ -17,6 +17,8 @@ public class BulletScript : MonoBehaviour
 
     public float lifetime = 1;
 
+    public bool piercing;
+
     private bool collided {get; set;}
 
     private bool dying = false;
@@ -53,6 +55,7 @@ public class BulletScript : MonoBehaviour
 
     void FixedUpdate()
     {   
+
         if(!collided){
             rbBullet.velocity =  direction;
         }else if(dying && Time.time > lifetime){
@@ -79,6 +82,20 @@ public class BulletScript : MonoBehaviour
         
     }
 
+    void OnTriggerEnter2D(Collider2D collider){
+
+        if(!piercing){
+            collided = true;
+            Stick(collider.transform);
+        }
+        
+        if(collider.CompareTag("Enemy")){
+
+            collider.GetComponent<BasicEnemyCombat>().takeDamage(this);
+        }
+        
+    }
+
     private void decreaseOpacity(){
         alphaValue -= 0.1f;
         // get the current color of the sprite
@@ -101,6 +118,11 @@ public class BulletScript : MonoBehaviour
 
     public void setPlayerBullet(bool isPlayerBullet){
         playerBullet = isPlayerBullet;
+        if(playerBullet){
+            gameObject.layer = LayerMask.NameToLayer("PlayerBullet");
+        }else{
+            gameObject.layer = LayerMask.NameToLayer("Bullet");
+        }
     }
 
     public bool isPassive(){
@@ -108,10 +130,16 @@ public class BulletScript : MonoBehaviour
     }
 
     public void dealtDamage(){
-        dealDamage = false;    
+        dealDamage = false;
     }
 
     public bool isFromPlayer(){
         return playerBullet;
+    }
+
+    private void Stick(Transform colliderTransform){
+        transform.SetParent(colliderTransform);
+        rbBullet.velocity = Vector2.zero;
+        GetComponent<CircleCollider2D>().enabled = false;
     }
 }

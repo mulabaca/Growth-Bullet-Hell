@@ -33,7 +33,7 @@ public class BasicEnemyCombat : MonoBehaviour
         }
     }
 
-    private void takeDamage(BulletScript bulletScript){
+    public void takeDamage(BulletScript bulletScript){
         health -= bulletScript.bulletDamage;
         if(health <= 0f){
 

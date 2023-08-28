@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PickupData : MonoBehaviour
 {
-    public string type;
+    
+    public PickupType type2;
     public int value, cost;
     public bool respawnable = false;
 

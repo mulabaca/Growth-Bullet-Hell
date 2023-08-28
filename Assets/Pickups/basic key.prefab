@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05f896142d3a3344193335ff3a06ca7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: key
+  type2: 1
   value: 1
   cost: 30
   respawnable: 0

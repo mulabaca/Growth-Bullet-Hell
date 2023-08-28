@@ -1,28 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
 using UnityEngine;
 
 public class InventoryHandler : MonoBehaviour
 {
     private Dictionary<string, int> inventory;
 
+    private int[] dictionary2 = {0,0,0}; //in DataType order 
+
     public Canvas uiCanvas;
     
     // Start is called before the first frame update
     void Start()
     {
-        inventory = new Dictionary<string, int>();
-        inventory["coin"] = 0;
-        inventory["key"] = 0;
-        inventory["sizeDown"] = 0;
+        
     }
 
     //add pickup to inventory if able to pay cost
     //returns true if requrements are met
-    public bool addPickup(PickupData data){
+    public bool addPickup2(PickupData data){
         if(payCost(data.cost)){
-            inventory[data.type] += data.value;
-            uiCanvas.GetComponentInChildren<UIScript>().updateCounter(inventory[data.type], data.type);
+            dictionary2[(int)data.type2] += data.value;
+            uiCanvas.GetComponentInChildren<UIScript>().updateCounter2(dictionary2[(int)data.type2], data.type2);
             return true;
         }
         return false;
@@ -30,17 +30,17 @@ public class InventoryHandler : MonoBehaviour
 
     public bool addEffectPickup(PickupData data){
         if(payCost(data.cost)){
-            inventory[data.type] += data.value;
-            uiCanvas.GetComponentInChildren<UIScript>().updateCounter(inventory[data.type], data.type);
+            dictionary2[(int)data.type2] += data.value;
+            uiCanvas.GetComponentInChildren<UIScript>().updateCounter2(dictionary2[(int)data.type2], data.type2);
             return true;
         }
         return false;
     }
 
     private bool payCost(int cost){
-        if(inventory["coin"] >= cost){
-            inventory["coin"] -= cost;
-            uiCanvas.GetComponentInChildren<UIScript>().updateCounter(inventory["coin"], "coin");
+        if(dictionary2[(int)PickupType.Coin] >= cost){
+            dictionary2[(int)PickupType.Coin] -= cost;
+            uiCanvas.GetComponentInChildren<UIScript>().updateCounter2(dictionary2[(int)PickupType.Coin], PickupType.Coin);
             return true;
         }
         return false;

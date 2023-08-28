@@ -17,6 +17,11 @@ TagManager:
   - Player
   - Walls
   - Dash
+  - PathFinding
+  - Gun
+  - Bullet
+  - PlayerBullet
+  - Enemy
   - 
   - 
   - 
@@ -33,12 +38,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Untochable
   - 
   m_SortingLayers:
   - name: background

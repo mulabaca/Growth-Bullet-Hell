@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05f896142d3a3344193335ff3a06ca7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: coin
+  type: 
   value: 1
   cost: 0
   respawnable: 0
