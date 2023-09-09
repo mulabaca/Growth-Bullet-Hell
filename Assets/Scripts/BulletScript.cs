@@ -46,7 +46,7 @@ public class BulletScript : MonoBehaviour
         direction = (transform.right * bulletSpeed);
     }
 
-    public void setMomentum(Vector3 momentum){
+    public void SetMomentum(Vector3 momentum){
         float projection = Vector3.Dot(momentum, direction.normalized);
         newDirection = (direction.normalized * (projection/2));
         direction = (transform.right * bulletSpeed) + newDirection;
@@ -63,7 +63,7 @@ public class BulletScript : MonoBehaviour
             rbBullet.velocity =  Vector3.zero; //stop the bullet
             hitbox.isTrigger = false; //disable collisions
             spriteRenderer.sortingOrder = 0; //make them part of the background
-            decreaseOpacity();
+            DecreaseOpacity();
             
         }else if(dying){
             rbBullet.velocity = rbBullet.velocity * 0.95f;
@@ -96,7 +96,7 @@ public class BulletScript : MonoBehaviour
         
     }
 
-    private void decreaseOpacity(){
+    private void DecreaseOpacity(){
         alphaValue -= 0.1f;
         // get the current color of the sprite
         Color currentColor = spriteRenderer.color;
@@ -112,7 +112,7 @@ public class BulletScript : MonoBehaviour
         }
     }
 
-    public void setMass(float mass){
+    public void SetMass(float mass){
         rbBullet.mass = mass;
     }
 
@@ -125,21 +125,23 @@ public class BulletScript : MonoBehaviour
         }
     }
 
-    public bool isPassive(){
+    public bool IsPassive(){
         return !dealDamage;
     }
 
-    public void dealtDamage(){
+    public void DealtDamage(){
         dealDamage = false;
     }
 
-    public bool isFromPlayer(){
+    public bool IsFromPlayer(){
         return playerBullet;
     }
 
     private void Stick(Transform colliderTransform){
-        transform.SetParent(colliderTransform);
-        rbBullet.velocity = Vector2.zero;
+
         GetComponent<CircleCollider2D>().enabled = false;
+        transform.SetParent(colliderTransform);
+
+        rbBullet.velocity = Vector2.zero;
     }
 }

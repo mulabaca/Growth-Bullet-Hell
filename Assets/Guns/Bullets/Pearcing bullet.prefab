@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 10
-  bulletDamage: 10
+  bulletDamage: 0.01
   newDirection: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   lifetime: 1

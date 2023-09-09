@@ -46,10 +46,10 @@ public class PlayerCombat : MonoBehaviour
         //bullets
         if(collision.collider.CompareTag("Bullet")){
             BulletScript bulletScript = collision.collider.GetComponent<BulletScript>();
-            if(!bulletScript.isPassive() && !bulletScript.isFromPlayer()){
+            if(!bulletScript.IsPassive() && !bulletScript.IsFromPlayer()){
                 Debug.Log("Player took damage!");
                 takeDamage();
-                bulletScript.dealtDamage();
+                bulletScript.DealtDamage();
             }
         }//enemies
         else if(collision.collider.CompareTag("Enemy")){

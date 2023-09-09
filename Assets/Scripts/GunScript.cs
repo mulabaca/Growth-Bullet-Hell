@@ -83,7 +83,7 @@ public class GunScript : MonoBehaviour
 
         bulletScript.setPlayerBullet(playerBullet);                     //bullet owner
         bulletScript.SetBulletSpeed(bulletSpeed);                       //bullet speed
-        bulletScript.setMomentum(rbPlayer.velocity * momentumStrength); //bullet momentum
+        bulletScript.SetMomentum(rbPlayer.velocity * momentumStrength); //bullet momentum
         bulletScript.transform.localScale *= transform.lossyScale.x;
         Debug.Log("recoil: " + recoil);
 

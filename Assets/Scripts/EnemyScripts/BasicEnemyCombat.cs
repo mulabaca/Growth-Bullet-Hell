@@ -26,9 +26,9 @@ public class BasicEnemyCombat : MonoBehaviour
         Debug.Log("Enemy collision with " + collision.collider.tag);
         if(collision.collider.CompareTag("Bullet")){
             BulletScript bulletScript = collision.collider.GetComponent<BulletScript>();
-            if(!bulletScript.isPassive() && bulletScript.isFromPlayer()){
+            if(!bulletScript.IsPassive() && bulletScript.IsFromPlayer()){
                 takeDamage(bulletScript);
-                Debug.Log("Enemy took damage from " + collision.collider.tag + " owned by player: " + bulletScript.isFromPlayer());
+                Debug.Log("Enemy took damage from " + collision.collider.tag + " owned by player: " + bulletScript.IsFromPlayer());
             }
         }
     }
@@ -44,6 +44,6 @@ public class BasicEnemyCombat : MonoBehaviour
             }
             Destroy(gameObject);
         }
-        bulletScript.dealtDamage();
+        bulletScript.DealtDamage();
     }
 }

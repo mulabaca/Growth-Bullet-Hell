@@ -817,7 +817,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -942083933912098919, guid: c176965268dd7604cb54d896ece9b2bf, type: 3}
       propertyPath: fireRate
-      value: 25
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -942083933912098919, guid: c176965268dd7604cb54d896ece9b2bf, type: 3}
       propertyPath: bulletSpeed
@@ -978,6 +978,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4039283293210491332, guid: b4dc706aded977c499e9053db040e223, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1638533964}
     - target: {fileID: 6464281764518877413, guid: b4dc706aded977c499e9053db040e223, type: 3}
       propertyPath: m_RootOrder
       value: 6
